@@ -1,44 +1,21 @@
 [
     {
-      "title": "Pirate Soc Collab Treasure Hunt",
-      "description": "A Cross Society event with Pirate Soc. Come join us for a fun treasure hunt around the city!",
-      "date": "2025-2-13",
-      "time": "18:00 - 20:00",
-      "location": "FTC Floor 2"
+      "title": "Hacktoberfest Kickoff",
+      "date": "2025-04-22",
+      "location": "FTC 3.01",
+      "description": "Intro to open source, GitHub, and how to participate in Hacktoberfest."
     },
     {
-        "title": "Dice",
-        "description":"Come join us at Dice for a afternoon of board games and",
-        "date": "2025-2-20",
-        "time": "18:00 - 20:00",
-        "location": "149 Albert Rd, Southsea, Portsmouth, Southsea PO4 0JW"
+      "title": "CTF Night",
+      "date": "2025-05-03",
+      "location": "FTC 4.10",
+      "description": "Beginner-friendly capture the flag with snacks!"
     },
     {
-        "title": "PUB Socal",
-        "description":"Its the best time of the week, come join us at the pub for a drink and a chat",
-        "date": "2025-2-21",
-        "time": "19:00 - 21:00",
-        "location": "Unkown check the discord server for more info"
-    },
-    {
-        "title": "Hackathon Ends",
-        "description":"The Hackathon ends today, come join us for the final presentations. Wins some prizes and have some fun",
-        "date": "2025-2-27",
-        "time": "18:00 - 20:00",
-        "location": "FTC Floor 2"
-    },
-    {
-        "title": "Mystery Guest Speaker",
-        "description":"We have a mystery guest speaker coming in today, come join us to find out who it is",
-        "date": "2025-3-6",
-        "time": "18:00 - 20:00",
-        "location": "FTC Floor 2"
-    },
-    {
-        "title": "PUB Socal",
-        "description":"Its the best time of the week, come join us at the pub for a drink and a chat",
-        "date": "2025-2-21",
-        "time": "19:00 - 21:00",
-        "location": "Unkown check the discord server for more info"
+      "title": "Tech Talk with IBM",
+      "date": "2025-05-15",
+      "location": "Richmond Building",
+      "description": "Come listen to professionals from IBM talk about careers and AI."
     }
   ]
+  

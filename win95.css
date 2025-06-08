@@ -1,0 +1,589 @@
+@font-face {
+	font-family: 'custom-local-font';
+	src: url('./W95FA.otf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+	background-color: #008080;
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	overflow-y: auto;
+	font-family: 'custom-local-font', 'Segoe UI', Tahoma, sans-serif;
+}
+
+.window {
+	background-color: #ffffff;
+	border: 3px solid #000000;
+	box-shadow: inset -3px -3px #ffffff, inset 3px 3px #808080;
+	padding: 0;
+	margin: 40px auto;
+	width: 800px;
+	max-width: 90%;
+	overflow: hidden;
+}
+
+.title-bar,
+.menu-bar {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.title-bar {
+	background-color: navy;
+	color: white;
+	padding: 8px 12px;
+	font-size: 22px;
+	font-weight: bold;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.title-bar-buttons {
+	display: flex;
+	gap: 6px;
+}
+
+.title-bar-button {
+	background-color: #c0c0c0;
+	border: 2px outset #fff;
+	width: 24px;
+	height: 24px;
+	text-align: center;
+	line-height: 20px;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.menu-bar {
+	display: flex;
+	background-color: #c0c0c0;
+	padding: 6px 12px;
+	border-bottom: 2px solid #808080;
+	font-size: 18px;
+	gap: 20px;
+	font-family: 'custom-local-font', sans-serif;
+}
+
+.menu-bar a {
+	text-decoration: none;
+}
+
+.menu-bar a:visited {
+	color: #000000;
+}
+
+.menu-item {
+	cursor: pointer;
+	padding: 4px 6px;
+}
+
+.menu-item:hover {
+	background-color: navy;
+	color: white;
+}
+
+.content {
+	padding: 20px;
+}
+
+.button {
+	background-color: #c0c0c0;
+	border: 3px outset #fff;
+	padding: 10px 20px;
+	font-size: 18px;
+	cursor: pointer;
+	margin-top: 20px;
+}
+
+.button:active {
+	border: 3px inset #808080;
+}
+
+input,
+textarea,
+select {
+	border: 3px inset #808080;
+	background-color: #ffffff;
+	font-size: 18px;
+	padding: 6px 10px;
+	margin-top: 10px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.committee-list {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.committee-list li {
+	background-color: #c0c0c0;
+	border: 2px outset #fff;
+	padding: 10px;
+	margin: 5px 0;
+	cursor: pointer;
+}
+
+.event-box {
+	background-color: #ffffff;
+	border: 2px solid #000000;
+	box-shadow: inset -2px -2px #ffffff, inset 2px 2px #808080;
+	padding: 12px;
+	margin-bottom: 12px;
+}
+
+.event-title {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.event-meta {
+	font-size: 14px;
+	color: #333;
+	margin: 4px 0;
+}
+
+.event-desc {
+	font-size: 16px;
+}
+
+.link-list {
+	margin-top: 8px;
+	font-size: 16px;
+}
+
+.link-list a {
+	color: black;
+	text-decoration: underline;
+	margin-right: 8px;
+}
+
+.link-list a:visited {
+	color: black;
+}
+
+.link-list a:hover {
+	background-color: navy;
+	color: white;
+	text-decoration: underline;
+}
+
+
+#popup {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	display: none;
+	align-items: center;
+	justify-content: center;
+	animation: popupFadeIn 0.5s ease forwards;
+	z-index: 9999;
+  }
+  .popup-content {
+	padding: 30px;
+	border-radius: 10px;
+	text-align: center;
+	max-width: 400px;
+	animation: popupScale 0.5s ease;
+  }
+  .popup-content h1 {
+	margin-top: 0;
+  }
+  #closeBtn {
+	margin-top: 400px;
+	padding: 10px 20px;
+	border: none;
+	background: #333;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+  }
+  @keyframes popupScale {
+	from { transform: scale(0); }
+	to { transform: scale(1); }
+  }
+  @keyframes popupFadeOut {
+	from { opacity: 1; }
+	to { opacity: 0; }
+  }
+
+
+  .achievement {
+    width: 64px;
+    height: 64px;
+    background-color: #4d4d4d;
+    border-radius: 32px;
+    position: absolute;
+    -webkit-transition:width 1s;
+    transition: width 1s;
+    overflow: hidden;
+}
+/* width then its slided out */
+.achievement.out {
+    width: 422px;
+}
+/* The dark circle */
+.circle {
+    background: #1a1a1a;
+    width: 58px;
+    height: 58px;
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    border-radius: 30px;
+}
+/* the quarter circles around the logo */
+.circle span:not(.logo) {
+    display: block;
+    width: 25px; 
+    height: 25px;
+    position: absolute;
+    background-color: #828282;
+    left: 3px;
+    top: 3px;
+}
+.circle span:nth-child(1) {
+    border-radius: 25px 0 0 0;
+    -moz-border-radius: 25px 0 0 0;
+    -webkit-border-radius: 25px 0 0 0;
+    background-color: #75aa1e; /* make the bar green */
+}
+.circle span:nth-child(2) {
+    border-radius: 0px 25px 0 0;
+    -moz-border-radius: 0 25px 0 0;
+    -webkit-border-radius: 0 25px 0 0;
+    left: 30px;
+}
+.circle span:nth-child(3) {
+    border-radius: 0 0 25px 0;
+    -moz-border-radius: 0 0 25px 0;
+    -webkit-border-radius: 0 0 25px 0;
+    left: 30px;
+    top: 30px;
+}
+.circle span:nth-child(4) {
+    border-radius: 0 0 0 25px;
+    -moz-border-radius: 0 0 0 25px;
+    -webkit-border-radius: 0 0 0 25px;
+    top: 30px;
+}
+/* The logo in the middle of the circle */
+@font-face {
+	font-family: 'custom-local-font';
+	src: url('./W95FA.otf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+	background-color: #008080;
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	overflow-y: auto;
+	font-family: 'custom-local-font', 'Segoe UI', Tahoma, sans-serif;
+}
+
+.window {
+	background-color: #ffffff;
+	border: 3px solid #000000;
+	box-shadow: inset -3px -3px #ffffff, inset 3px 3px #808080;
+	padding: 0;
+	margin: 40px auto;
+	width: 800px;
+	max-width: 90%;
+	overflow: hidden;
+}
+
+.title-bar,
+.menu-bar {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.title-bar {
+	background-color: navy;
+	color: white;
+	padding: 8px 12px;
+	font-size: 22px;
+	font-weight: bold;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.title-bar-buttons {
+	display: flex;
+	gap: 6px;
+}
+
+.title-bar-button {
+	background-color: #c0c0c0;
+	border: 2px outset #fff;
+	width: 24px;
+	height: 24px;
+	text-align: center;
+	line-height: 20px;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.menu-bar {
+	display: flex;
+	background-color: #c0c0c0;
+	padding: 6px 12px;
+	border-bottom: 2px solid #808080;
+	font-size: 18px;
+	gap: 20px;
+	font-family: 'custom-local-font', sans-serif;
+}
+
+.menu-bar a {
+	text-decoration: none;
+}
+
+.menu-bar a:visited {
+	color: #000000;
+}
+
+.menu-item {
+	cursor: pointer;
+	padding: 4px 6px;
+}
+
+.menu-item:hover {
+	background-color: navy;
+	color: white;
+}
+
+.content {
+	padding: 20px;
+}
+
+.button {
+	background-color: #c0c0c0;
+	border: 3px outset #fff;
+	padding: 10px 20px;
+	font-size: 18px;
+	cursor: pointer;
+	margin-top: 20px;
+}
+
+.button:active {
+	border: 3px inset #808080;
+}
+
+input,
+textarea,
+select {
+	border: 3px inset #808080;
+	background-color: #ffffff;
+	font-size: 18px;
+	padding: 6px 10px;
+	margin-top: 10px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.committee-list {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.committee-list li {
+	background-color: #c0c0c0;
+	border: 2px outset #fff;
+	padding: 10px;
+	margin: 5px 0;
+	cursor: pointer;
+}
+
+.event-box {
+	background-color: #ffffff;
+	border: 2px solid #000000;
+	box-shadow: inset -2px -2px #ffffff, inset 2px 2px #808080;
+	padding: 12px;
+	margin-bottom: 12px;
+}
+
+.event-title {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.event-meta {
+	font-size: 14px;
+	color: #333;
+	margin: 4px 0;
+}
+
+.event-desc {
+	font-size: 16px;
+}
+
+.link-list {
+	margin-top: 8px;
+	font-size: 16px;
+}
+
+.link-list a {
+	color: black;
+	text-decoration: underline;
+	margin-right: 8px;
+}
+
+.link-list a:visited {
+	color: black;
+}
+
+.link-list a:hover {
+	background-color: navy;
+	color: white;
+	text-decoration: underline;
+}
+
+/* Replace your existing popup and achievement CSS with this: */
+
+#popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    animation: popupFadeIn 0.5s ease forwards;
+    z-index: 9999;
+}
+
+.popup-content {
+    background-color: #c0c0c0;
+    border: 3px solid #000;
+    box-shadow: inset -3px -3px #ffffff, inset 3px 3px #808080;
+    padding: 30px;
+    text-align: center;
+    max-width: 500px;
+    animation: popupScale 0.5s ease;
+    position: relative;
+}
+
+#closeBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #c0c0c0;
+    border: 3px outset #fff;
+    color: black;
+    font-family: 'custom-local-font', sans-serif;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#closeBtn:active {
+    border: 3px inset #808080;
+}
+
+.achievement {
+    width: 64px;
+    height: 64px;
+    background-color: #4d4d4d;
+    border-radius: 32px;
+    position: relative;
+    transition: width 1s;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+
+.achievement.out {
+    width: 422px;
+}
+
+
+.circle {
+    background: #1a1a1a;
+    width: 58px;
+    height: 58px;
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    border-radius: 30px;
+    z-index: 2;
+}
+
+.circle span:not(.logo) {
+    display: block;
+    width: 25px; 
+    height: 25px;
+    position: absolute;
+    background-color: #828282;
+    left: 3px;
+    top: 3px;
+}
+
+.circle span:nth-child(1) {
+    border-radius: 25px 0 0 0;
+    background-color: #75aa1e;
+}
+
+.circle span:nth-child(2) {
+    border-radius: 0 25px 0 0;
+    left: 30px;
+}
+
+.circle span:nth-child(3) {
+    border-radius: 0 0 25px 0;
+    left: 30px;
+    top: 30px;
+}
+
+.circle span:nth-child(4) {
+    border-radius: 0 0 0 25px;
+    top: 30px;
+}
+
+.logo {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    background-image: url("static/images/achivment.png");
+    background-size: 30px 30px, cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    height: 30px;
+    width: 30px;
+    border: 2px solid #161616;
+    border-radius: 30px;
+    z-index: 3;
+}
+
+.achievement .text {
+    position: absolute;
+    left: 80px;
+    top: 15px;
+    width: 300px;
+    text-align: left;
+    color: white;
+    font-family: sans-serif;
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.5s 0.5s;
+    z-index: 1;
+}
+
+.achievement.out .text {
+    opacity: 1;
+}
