@@ -18,9 +18,17 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://itsociety.co.uk/">
   <meta property="og:image" content="static/images/IT_SOC.png">
-
 </head>
 <body>
+
+  <script type="text/javascript">
+     function promptAndClose() {
+         if (confirm("Are you sure you want to close this window?")) {
+             alert(`Because of "Security Concerns" we cannot close this tab, however we are able to redirect you`)
+             const opened = window.open("https://zombo.com/", "_top")
+         }  
+     }
+  </script>
 
   <div class="window">
     <div class="title-bar">
@@ -28,7 +36,7 @@
       <div class="title-bar-buttons">
         <div class="title-bar-button">_</div>
         <div class="title-bar-button">☐</div>
-        <div class="title-bar-button">✕</div>
+        <div role="button" onclick="promptAndClose()" class="title-bar-button">✕</div>
       </div>
     </div>
 
