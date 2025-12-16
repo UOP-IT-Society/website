@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 9: File Automation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+/* 1. GLOBAL RESET & BASE STYLES */
+* { box-sizing: border-box; }
+body {
+    background-color: #0f172a;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+    margin: 0;
+    min-height: 100vh;
+    padding: 20px 0;
+    place-items: center;
+    font-family: 'Urbanist', sans-serif;
+}
+
+/* 2. SLIDE CONTAINER */
+.slide-container {
+    background-color: #121212;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    height: 720px;
+    justify-content: center;
+    overflow: hidden;
+    padding: 40px;
+    position: relative;
+    width: 1280px;
+    border: 1px solid #333;
+}
+
+/* Background Aesthetics */
+.slide-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+}
+.slide-container::after {
+    background: linear-gradient(90deg, #60a5fa, #a855f7); /* Blue to Purple for Automation */
+    bottom: 0; content: ''; height: 5px; left: 0; position: absolute; width: 100%;
+}
+.slide-container > * { position: relative; z-index: 1; }
+
+/* 3. TYPOGRAPHY */
+h1, h2, h3 { margin: 0; font-weight: 700; color: #f1f5f9; }
+h1 { font-size: 72px; line-height: 1.1; letter-spacing: -2px; }
+h2 { font-size: 48px; margin-bottom: 30px; border-left: 6px solid #60a5fa; padding-left: 20px; }
+h3 { font-size: 28px; margin-bottom: 15px; color: #93c5fd; }
+p, li { font-size: 20px; line-height: 1.6; color: #cbd5e1; margin-bottom: 15px; }
+li { margin-bottom: 10px; }
+.highlight { color: #60a5fa; font-weight: 700; }
+
+/* 4. COMPONENTS */
+.code-block {
+    background-color: #1e1e1e;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    color: #a5d6ff;
+    font-size: 16px;
+    white-space: pre-wrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    margin-bottom: 20px;
+}
+.kw { color: #c586c0; } /* Keyword */
+.str { color: #ce9178; } /* String */
+.fn { color: #dcdcaa; } /* Function */
+.cmt { color: #6a9955; font-style: italic; }
+
+/* Exercise Box */
+.exercise-box {
+    background: rgba(96, 165, 250, 0.1);
+    border: 1px dashed #60a5fa;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: auto;
+}
+.exercise-header {
+    color: #60a5fa;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Layouts */
+.content-wrapper { display: flex; flex-direction: column; height: 100%; justify-content: center; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; height: 100%; align-items: center; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.tile { background: #1e1e1e; padding: 25px; border-radius: 16px; border: 1px solid #333; text-align: center; }
+.tile i { font-size: 40px; color: #60a5fa; margin-bottom: 20px; }
+
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: Title -->
+<div class="slide-container" id="slide1">
+    <div class="content-wrapper" style="align-items: center; text-align: center;">
+        <i class="fa-solid fa-gears" style="font-size: 80px; color: #60a5fa; margin-bottom: 20px;"></i>
+        <h1>Week 9: <span class="highlight">Automation</span></h1>
+        <p style="font-size: 28px; color: #94a3b8;">Batch Processing, Error Handling & Resilience</p>
+    </div>
+</div>
+
+<!-- SLIDE 2: The Goal -->
+<div class="slide-container" id="slide2">
+    <h2>The Goal: "Hands-Off" Data</h2>
+    <div class="two-col">
+        <div>
+            <p><strong>Scenario:</strong> You wrote a script to clean <code>january_sales.csv</code>. It works perfectly.</p>
+            <p><strong>Problem:</strong> Your boss just emailed you 48 more files, one for every month since 2019.</p>
+            <p><strong>Solution:</strong> Do not run the script 48 times. Write a loop.</p>
+        </div>
+        <div class="tile">
+            <h3>Manual vs. Automated</h3>
+            <ul style="text-align: left; list-style: none; padding: 0;">
+                <li>❌ <strong>Manual:</strong> Change filename -> Run -> Save -> Repeat</li>
+                <li>✅ <strong>Automated:</strong> Find all files -> Loop -> Handle Errors -> Concatenate -> Sleep</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 3: Tool 1 - Glob -->
+<div class="slide-container" id="slide3">
+    <h2>Tool 1: Pattern Matching (<span class="highlight">glob</span>)</h2>
+    <div class="two-col">
+        <div>
+            <p>How do we find 50 files without typing 50 names?</p>
+            <p><strong>Glob</strong> allows us to use "wildcards" to match file patterns.</p>
+            <ul>
+                <li><code>*</code> = Match anything</li>
+                <li><code>*.csv</code> = Match any CSV file</li>
+                <li><code>data/2023_*.xlsx</code> = Match 2023 Excel files in data folder</li>
+            </ul>
+        </div>
+        <div>
+            <div class="code-block">
+<span class="kw">import</span> glob
+
+<span class="cmt"># Find all CSVs in 'raw_data'</span>
+files = glob.glob(<span class="str">'raw_data/*.csv'</span>)
+
+<span class="kw">print</span>(files)
+<span class="cmt"># Output: ['raw_data/jan.csv', 'raw_data/feb.csv']</span>
+            </div>
+            <div class="exercise-box">
+                <div class="exercise-header"><i class="fa-solid fa-terminal"></i> Quick Quiz</div>
+                <p style="font-size: 16px; margin:0;">Write a pattern to find text files that start with "Error" inside a "logs" folder.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 4: Tool 2 - OS -->
+<div class="slide-container" id="slide4">
+    <h2>Tool 2: Path Manipulation (<span class="highlight">os</span>)</h2>
+    <div class="two-col">
+        <div>
+            <p><strong>Never</strong> concatenate strings for paths (e.g., <code>folder + "/" + file</code>).</p>
+            <p>It breaks on Windows (uses <code>\</code>) vs Mac (uses <code>/</code>). Use the <code>os</code> module for safety.</p>
+        </div>
+        <div>
+            <div class="code-block">
+<span class="kw">import</span> os
+
+<span class="cmt"># Safe Joining</span>
+path = os.path.join(<span class="str">'data'</span>, <span class="str">'sales'</span>, <span class="str">'jan.csv'</span>)
+
+<span class="cmt"># Get Filename from Path</span>
+name = os.path.basename(path) <span class="cmt"># 'jan.csv'</span>
+
+<span class="cmt"># Check if file exists</span>
+exists = os.path.exists(path) <span class="cmt"># True/False</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 5: The Batch Pattern -->
+<div class="slide-container" id="slide5">
+    <h2>The Batch Pattern</h2>
+    <div class="two-col">
+        <div>
+            <p>This is the skeleton key for automation. Memorize this.</p>
+            <ol>
+                <li><strong>Setup:</strong> Create an empty list for results.</li>
+                <li><strong>Loop:</strong> Iterate through file paths.</li>
+                <li><strong>Process:</strong> Read & Clean.</li>
+                <li><strong>Append:</strong> Add to the list.</li>
+                <li><strong>Combine:</strong> Merge list into one Master DataFrame.</li>
+            </ol>
+        </div>
+        <div>
+            <div class="code-block">
+all_dfs = []
+
+<span class="kw">for</span> file <span class="kw">in</span> files:
+    df = pd.read_csv(file)
+    all_dfs.append(df)
+
+<span class="cmt"># The Merge</span>
+master = pd.concat(all_dfs, ignore_index=<span class="kw">True</span>)
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 6: Validation -->
+<div class="slide-container" id="slide6">
+    <h2>Step 1: Trust No File (Validation)</h2>
+    <div class="two-col">
+        <div>
+            <p>Just because it ends in <code>.csv</code> doesn't mean it's valid data.</p>
+            <p>Always validate column headers before processing. If columns are wrong, <code>pd.concat</code> will create a mess of NaNs.</p>
+        </div>
+        <div>
+            <div class="code-block">
+required_cols = [<span class="str">'Date'</span>, <span class="str">'Amount'</span>]
+
+<span class="kw">for</span> file <span class="kw">in</span> files:
+    df = pd.read_csv(file)
+    
+    <span class="cmt"># Check if columns are missing</span>
+    <span class="kw">if not</span> <span class="kw">set</span>(required_cols).issubset(df.columns):
+        <span class="kw">print</span>(f<span class="str">"Skipping {file}: Bad Columns"</span>)
+        <span class="kw">continue</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 7: Enrichment -->
+<div class="slide-container" id="slide7">
+    <h2>Step 2: Enrichment (Audit Trails)</h2>
+    <div class="two-col">
+        <div>
+            <p>Once you combine 50 files, you lose the ability to know where a row came from.</p>
+            <p><strong>Always</strong> add a "Source" column before merging.</p>
+        </div>
+        <div>
+            <div class="code-block">
+<span class="kw">for</span> file <span class="kw">in</span> files:
+    df = pd.read_csv(file)
+    
+    <span class="cmt"># Crucial Step!</span>
+    df[<span class="str">'Source_File'</span>] = os.path.basename(file)
+    
+    all_dfs.append(df)
+            </div>
+            <div class="exercise-box">
+                <div class="exercise-header"><i class="fa-solid fa-magnifying-glass"></i> Why?</div>
+                <p style="font-size: 16px; margin:0;">If a manager asks "Why is this sales number weird?", you can instantly trace it back to <code>sales_mar_2022.csv</code>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 8: Error Handling -->
+<div class="slide-container" id="slide8">
+    <h2>Defensive Coding: <span class="highlight">try / except</span></h2>
+    <div class="two-col">
+        <div>
+            <p>If file #49 is corrupt, your script will crash and you lose #1-48.</p>
+            <p>Wrap the risky part (reading/cleaning) in a <code>try</code> block. If it fails, log it and <code>continue</code>.</p>
+        </div>
+        <div>
+            <div class="code-block">
+<span class="kw">for</span> file <span class="kw">in</span> files:
+    <span class="kw">try</span>:
+        df = pd.read_csv(file)
+        <span class="cmt"># ... logic ...</span>
+    
+    <span class="kw">except</span> Exception <span class="kw">as</span> e:
+        <span class="kw">print</span>(f<span class="str">"⚠️ Failed {file}: {e}"</span>)
+        <span class="kw">continue</span> <span class="cmt"># Skip to next file</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 9: Specific Errors -->
+<div class="slide-container" id="slide9">
+    <h2>Catching Specific Errors</h2>
+    <div class="grid-3">
+        <div class="tile">
+            <i class="fa-solid fa-file-excel"></i>
+            <h3>EmptyDataError</h3>
+            <p>Pandas raises this if the file is completely empty (0 bytes). Catch it specifically.</p>
+        </div>
+        <div class="tile">
+            <i class="fa-solid fa-table"></i>
+            <h3>ParserError</h3>
+            <p>Happens when a CSV is malformed (e.g., row 10 has 5 columns but header has 3).</p>
+        </div>
+        <div class="tile">
+            <i class="fa-solid fa-ban"></i>
+            <h3>PermissionError</h3>
+            <p>Happens if the file is currently open in Excel. Automation scripts hate open files.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 10: Logging -->
+<div class="slide-container" id="slide10">
+    <h2>Logging > Print</h2>
+    <div class="two-col">
+        <div>
+            <p><code>print()</code> disappears when you close the console. <code>logging</code> writes to a persistent file.</p>
+            <p>Use levels to categorize importance:</p>
+            <ul>
+                <li><code>INFO</code>: "Job started."</li>
+                <li><code>WARNING</code>: "File empty, skipping."</li>
+                <li><code>ERROR</code>: "Script crashed."</li>
+            </ul>
+        </div>
+        <div>
+            <div class="code-block">
+<span class="kw">import</span> logging
+
+logging.basicConfig(filename=<span class="str">'job.log'</span>)
+
+<span class="kw">if</span> file_is_bad:
+    logging.warning(f<span class="str">"{file} was skipped."</span>)
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 11: Aggregation Nuances -->
+<div class="slide-container" id="slide11">
+    <h2>Concatenation Nuances</h2>
+    <div class="two-col">
+        <div>
+            <p><code>pd.concat</code> is powerful but can be tricky.</p>
+            <p><strong>ignore_index=True</strong>: Essential. Without this, you end up with 50 rows all having Index 0.</p>
+            <p><strong>sort=False</strong>: Prevents Pandas from alphabetically sorting column names if they don't align perfectly.</p>
+        </div>
+        <div>
+            <div class="code-block">
+<span class="cmt"># WRONG: Retains duplicate indexes</span>
+df = pd.concat([df1, df2]) 
+<span class="cmt"># Index: 0, 1, 2, 0, 1, 2</span>
+
+<span class="cmt"># RIGHT: Creates new continuous index</span>
+df = pd.concat([df1, df2], ignore_index=<span class="kw">True</span>)
+<span class="cmt"># Index: 0, 1, 2, 3, 4, 5</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 12: Dynamic Outputs -->
+<div class="slide-container" id="slide12">
+    <h2>Dynamic Output Naming</h2>
+    <div class="two-col">
+        <div>
+            <p>Don't overwrite your output every time. Timestamp your files.</p>
+            <p>This creates a history of reports rather than just the latest one.</p>
+        </div>
+        <div>
+            <div class="code-block">
+<span class="kw">import</span> datetime
+
+today = datetime.datetime.now()
+timestamp = today.strftime(<span class="str">"%Y-%m-%d"</span>)
+
+filename = f<span class="str">"Master_Report_{timestamp}.csv"</span>
+
+df.to_csv(filename, index=<span class="kw">False</span>)
+<span class="cmt"># Result: Master_Report_2023-10-25.csv</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 13: Project Structure -->
+<div class="slide-container" id="slide13">
+    <h2>Project Structure</h2>
+    <div class="grid-3">
+        <div class="tile">
+            <i class="fa-regular fa-folder-open"></i>
+            <h3>input/</h3>
+            <p>Where raw files live. Never write to this folder. Read-only.</p>
+        </div>
+        <div class="tile">
+            <i class="fa-solid fa-code"></i>
+            <h3>src/</h3>
+            <p>Your scripts (<code>main.py</code>, <code>utils.py</code>) go here.</p>
+        </div>
+        <div class="tile">
+            <i class="fa-solid fa-file-export"></i>
+            <h3>output/</h3>
+            <p>Where processed files and logs are saved. Keep it separate.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 14: Lab Phase 1 -->
+<div class="slide-container" id="slide14">
+    <h2>Lab Phase 1: Planning & Setup</h2>
+    <div class="content-wrapper">
+        <p>Before coding, set up your workspace.</p>
+        <ol>
+            <li>Create folders: <code>raw_data</code> and <code>processed_data</code>.</li>
+            <li>Download the dummy data zip (or generate using the provided setup script).</li>
+            <li>Create a new python script <code>automation.py</code>.</li>
+            <li><strong>Task:</strong> Write the <code>setup_dummy_environment()</code> function to generate 5 CSV files, where one is broken (text file renamed as CSV).</li>
+        </ol>
+    </div>
+</div>
+
+<!-- SLIDE 15: Lab Phase 2 -->
+<div class="slide-container" id="slide15">
+    <h2>Lab Phase 2: The Core Loop</h2>
+    <div class="content-wrapper">
+        <p>Write the logic to iterate and read.</p>
+        <ol>
+            <li>Use <code>glob</code> to get the file list.</li>
+            <li>Write a <code>for</code> loop.</li>
+            <li>Inside the loop: <code>print(file)</code> to verify it works.</li>
+            <li>Add <code>pd.read_csv()</code> and <code>all_dfs.append()</code>.</li>
+            <li><strong>Task:</strong> Run it. It SHOULD crash on the broken file. Note the error.</li>
+        </ol>
+    </div>
+</div>
+
+<!-- SLIDE 16: Lab Phase 3 -->
+<div class="slide-container" id="slide16">
+    <h2>Lab Phase 3: Resilience & Export</h2>
+    <div class="content-wrapper">
+        <p>Make it bulletproof.</p>
+        <ol>
+            <li>Wrap the read logic in <code>try/except</code>.</li>
+            <li>Add <code>logging</code> to record the failure instead of crashing.</li>
+            <li>Add <code>df['Source']</code> column.</li>
+            <li>Combine using <code>pd.concat</code>.</li>
+            <li>Export to <code>processed_data/Master_Report_[Date].csv</code>.</li>
+        </ol>
+    </div>
+</div>
+
+</body>
+</html>
