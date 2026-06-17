@@ -1,6 +1,6 @@
 /* Mobile-first approach */
 @font-face {
-  font-family: 'custom-local-font';
+  font-family: win-95-font;
   src: url('./W95FA.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
@@ -14,7 +14,7 @@ body {
   padding: 0;
   min-height: 100vh;
   overflow-y: auto;
-  font-family: 'custom-local-font', 'Segoe UI', Tahoma, sans-serif;
+  font-family: win-95-font, 'Segoe UI', Tahoma, sans-serif;
   font-size: 16px;
 }
 
@@ -70,7 +70,7 @@ body {
   border-bottom: 2px solid #808080;
   font-size: 16px;
   gap: 10px;
-  font-family: 'custom-local-font', sans-serif;
+  font-family: win-95-font, sans-serif;
 }
 
 .menu-bar a {
@@ -113,6 +113,8 @@ h4 {
   font-size: 16px;
   cursor: pointer;
   margin-top: 15px;
+
+  font-family: "custom-local-font";
 }
 
 .button:active {
@@ -218,7 +220,7 @@ select {
   background: #c0c0c0;
   border: 3px outset #fff;
   color: black;
-  font-family: 'custom-local-font', sans-serif;
+  font-family: win-95-font, sans-serif;
   font-size: 16px;
   cursor: pointer;
 }
@@ -421,21 +423,8 @@ html {
   display: block;
 }
 
-
-#slideshow-container {
-  max-width: 500px; 
-  margin: 15px auto; 
-}
-
-#slideshow-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-}
-
 #image-counter {
-  font-family: 'custom-local-font', sans-serif;
+  font-family: win-95-font, sans-serif;
   font-size: 16px;
 }
 
@@ -446,4 +435,6 @@ button {
   font-size: 16px;
   cursor: pointer;
   margin-top: 15px;
+
+  font-family: win-95-font;
 }

@@ -23,6 +23,7 @@
 
   <!-- Scripts/components -->
   <script src="static/components/committee-card.ts" type="module"></script>
+  <script src="static/components/slideshow.ts" type="module"></script>
 </head>
 
 <body>
@@ -85,16 +86,15 @@
       </div>
 
       <h4>Past Events</h4>
-      <div id="slideshow-container">
-        <div class="image-container">
-          <img id="slideshow-image" src="static/images/your-photo-1.jpg" alt="A photo of the IT society members">
-        </div>
-        <div id="slideshow-controls">
-          <button id="prev-btn" class="button">&lt; Prev</button>
-          <span id="image-counter">Image 1 / 5</span>
-          <button id="next-btn" class="button">Next &gt;</button>
-        </div>
-      </div>
+
+      <slide-show>
+        <img src="static/images/homeSlideshow/bbq.jpg" alt="BBQ">
+        <img src="static/images/homeSlideshow/boardgame.jpg" alt="Boardgame night">
+        <img src="static/images/homeSlideshow/learngit.png" alt="Learn Git">
+        <img src="static/images/homeSlideshow/christmas_dinner.jpg" alt="Christmas dinner">
+        <img src="static/images/homeSlideshow/bonfire.jpg" alt="Bonfire night">
+        <img src="static/images/homeSlideshow/IMG_0003.JPG" alt="">
+      </slide-show>
 
       <h4 id="committee">Our Current Committee</h4>
       <ul class="committee-list">
@@ -201,51 +201,6 @@
     </div>
     <p>© 2025 UOP IT Society. All rights reserved.</p>
   </footer>
-
-  <script>
-    // Wait for the document to be fully loaded before running the script
-    document.addEventListener('DOMContentLoaded', () => {
-
-      const images = [
-        'static/images/bbq.jpg',
-        'static/images/boardgame.jpg',
-        'static/images/learngit.png',
-        'static/images/christmas_dinner.jpg',
-        'static/images/bonfire.jpg',
-        'static/images/IMG_0003.JPG'
-      ];
-
-      const slideshowImage = document.getElementById('slideshow-image');
-      const prevBtn = document.getElementById('prev-btn');
-      const nextBtn = document.getElementById('next-btn');
-      const imageCounter = document.getElementById('image-counter');
-
-      let currentIndex = 0;
-
-      // --- Core Function to Display an Image ---
-      function showImage(index) {
-        slideshowImage.src = images[index];
-        imageCounter.textContent = `Image ${index + 1} / ${images.length}`;
-      }
-
-      // --- Event Listeners for Buttons ---
-      nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % images.length;
-        showImage(currentIndex);
-      });
-
-      prevBtn.addEventListener('click', () => {
-        if (currentIndex === 0) {
-          currentIndex = images.length - 1;
-        } else {
-          currentIndex = currentIndex - 1;
-        }
-        showImage(currentIndex);
-      });
-
-      showImage(currentIndex);
-    });
-  </script>
 
 </body>
 
