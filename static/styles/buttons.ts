@@ -1,7 +1,8 @@
 import { css } from "lit";
 import { baseStyles } from "./baseStyles";
 
-export const defaultButtonStyle = [baseStyles, css`button {
+export const defaultButtonStyle = [baseStyles, css`
+button {
   background-color: #c0c0c0;
   border: 3px outset #fff;
   padding: 8px 16px;
@@ -10,4 +11,10 @@ export const defaultButtonStyle = [baseStyles, css`button {
   margin-top: 15px;
 
   font-family: "win-95-font";
-}`]
+}
+
+button:active {
+  border: 3px inset #808080;
+}
+
+`]

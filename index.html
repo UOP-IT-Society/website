@@ -22,8 +22,9 @@
   <meta property="og:image" content="static/images/IT_SOC.png">
 
   <!-- Scripts/components -->
-  <script src="static/components/committee-card.ts" type="module"></script>
-  <script src="static/components/slideshow.ts" type="module"></script>
+  <script type="module" src="static/components/committee-card.ts"></script>
+  <script type="module" src="static/components/slideshow.ts"></script>
+  <script type="module" src="static/components/calendar.ts"></script>
 </head>
 
 <body>
@@ -80,10 +81,11 @@
       </ul>
 
 
-      <h4 id="events">Upcoming Events</h4>
-      <div id="events-container">
-        <p>Loading events...</p>
-      </div>
+      <h4 id="events">What's on</h4>
+
+      <p>Click on each event to find out more. If the calendar is empty, no events have been planned for that month yet. For the most up to date information see our Discord.</p>
+
+      <event-calendar src="events.json"></event-calendar>
 
       <h4>Past Events</h4>
 
@@ -140,9 +142,6 @@
       <button id="closeBtn">Close</button>
     </div>
   </div>
-
-  <script src="events.js"></script>
-
 
   <script>
     const popup = document.getElementById('popup');

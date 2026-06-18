@@ -1,39 +1,51 @@
 [
     {
-      "title": "Treasure Hunt",
-      "date": "2025-10-02",
-      "location": "Tree Outside of the Library at 5:00 PM",
-      "description": "Get to know the city, meet some great people and discover some lesser known facts of the city."
+      "title": "Exams",
+      "date": "2026-10-24",
+      "endDate": "2026-11-01",
+      "type": "exams",
+      "location": "",
+      "description": "Assessment and Referral Period (Mid-term)"
     },
     {
-      "title": "Board Games Night",
-      "date": "2025-10-10",
-      "location": "Dice Board Game Lounge",
-      "description": "Join us for a fun evening of board games!"
+      "title": "Exams",
+      "date": "2026-12-05",
+      "endDate": "2026-12-20",
+      "type": "exams",
+      "location": "",
+      "description": "Assessment and Referral Period (Mid-term)"
     },
     {
-      "title": "Coding for non-coders",
-      "date": "2025-10-14",
-      "location": "BK0.07",
-      "description": "Get to learn the basics of python that can be applied in various fields, and data science."
+      "title": "Christmas",
+      "date": "2026-12-21",
+      "endDate": "2027-01-17",
+      "type": "holiday",
+      "location": "",
+      "description": "Merry Christmas!"
     },
     {
-      "title": "Lighting Talks",
-      "date": "2025-10-16",
-      "location": "FTC 2",
-      "description": "A series of short, engaging talks on a variety of topics."
+      "title": "Exams",
+      "date": "2027-02-20",
+      "endDate": "2027-02-28",
+      "type": "exams",
+      "location": "",
+      "description": "Assessment and Referral Periods"
     },
     {
-      "title": "Coding for non-coders",
-      "date": "2025-10-21",
-      "location": "BK0.07",
-      "description": "Get to learn the basics of python that can be applied in various fields, and data science."
+      "title": "Easter",
+      "date": "2027-03-20",
+      "endDate": "2027-04-25",
+      "type": "holiday",
+      "location": "",
+      "description": "Happy Easter!"
     },
     {
-      "title": "Try hack me CTF",
-      "date": "2025-10-24",
-      "location": "To Be Decided",
-      "description": " FREE PIZZA, A Capture The Flag event focused on cybersecurity challenges."
+      "title": "Exams",
+      "date": "2027-04-26",
+      "endDate": "2027-06-04",
+      "type": "exams",
+      "location": "",
+      "description": "The End"
     }
   ]
   

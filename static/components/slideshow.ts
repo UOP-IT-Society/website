@@ -45,7 +45,6 @@ export class SlideshowElement extends LitElement {
     }
 
     private _onSlotChange() {
-        console.log(this._slottedImages)
 
         if (!this._slottedImages) {
             return
@@ -62,7 +61,6 @@ export class SlideshowElement extends LitElement {
     }
 
     private _changeSlide(amount: number) {
-        console.log(amount)
 
         if (this._slides.length == 0) {
             return

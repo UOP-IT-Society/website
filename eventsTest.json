@@ -1,0 +1,53 @@
+[
+    {
+      "title": "Treasure Hunt",
+      "date": "2026-06-01",
+      "type": "normal",
+      "location": "Tree Outside of the Library at 5:00 PM",
+      "description": "Get to know the city, meet some great people and discover some lesser known facts of the city."
+    },
+    {
+      "title": "Board Games Night",
+      "date": "2026-06-06",
+      "type": "social",
+      "location": "Dice Board Game Lounge",
+      "description": "Join us for a fun evening of board games!"
+    },
+    {
+      "title": "Coding for non-coders",
+      "date": "2026-06-10",
+      "type": "special",
+      "location": "BK0.07",
+      "description": "Get to learn the basics of python that can be applied in various fields, and data science."
+    },
+    {
+      "title": "Lighting Talks",
+      "date": "2026-06-17",
+      "type": "normal",
+      "location": "FTC 2",
+      "description": "A series of short, engaging talks on a variety of topics."
+    },
+    {
+      "title": "Coding for non-coders",
+      "date": "2026-06-20",
+      "type": "special",
+      "location": "BK0.07",
+      "description": "Get to learn the basics of python that can be applied in various fields, and data science."
+    },
+    {
+      "title": "Try hack me CTF",
+      "date": "2026-06-25",
+      "type": "normal",
+      "location": "To Be Decided",
+      "description": " FREE PIZZA, A Capture The Flag event focused on cybersecurity challenges."
+    },
+    {
+      "title": "Mini Holiday",
+      "date": "2026-06-22",
+      "endDate" : "2026-06-24",
+      "type": "holiday",
+      "location": "",
+      "description": "Happy holiday"
+    }
+  ]
+  
