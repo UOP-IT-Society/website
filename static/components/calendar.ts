@@ -351,6 +351,7 @@ export class CalendarElement extends LitElement {
 
         <div id="calendar-container" @calendar-event-clicked=${this._handleCalendarEventClicked}>
             ${["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => html`<strong class="header-row-day">${d}</strong>`)}
+            <!-- This line sometimes has an error, about the type of eventData, ignore it, it doesn't mean anything, there is no fix -->
             ${this._allDays.map((d) => html`<event-calendar-day .date=${d.date} ?wraparound=${d.wraparound} ?passed=${d.passed} .eventData=${d.events as CalendarEvent[]}></event-calendar-day>`)}
         </div>
 
