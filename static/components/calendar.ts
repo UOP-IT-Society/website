@@ -47,13 +47,17 @@ export class CalendarDayElement extends LitElement {
             margin: 4px;
         }
 
-        :host([wraparound]) {
+        :host(.wraparound) {
             background-color: #c0c0c0;
             cursor: not-allowed;
         }
 
-        :host([passed]) {
+        :host(.passed) {
             background-color: #e7e7e7;
+        }
+
+        :host(.current-date) {
+            background-color: #ff8b8b;
         }
 
         div {
@@ -64,10 +68,6 @@ export class CalendarDayElement extends LitElement {
         :host {
             height: 4rem;
             font-size: 14px;
-        }
-
-        .current-date {
-            background-color: #ff8b8b;
         }
 
         .normal-event {
@@ -101,12 +101,6 @@ export class CalendarDayElement extends LitElement {
     @property({ attribute: false, type: Object })
     accessor date: Date = new Date();
 
-    @property({ type: Boolean })
-    accessor wraparound: boolean = false;
-
-    @property({ type: Boolean })
-    accessor passed: boolean = false;
-
     @property({ attribute: false, type: Array })
     accessor eventData: CalendarEvent[] = [];
 
@@ -130,7 +124,6 @@ export class CalendarDayElement extends LitElement {
         this.eventData.sort((a, b) => EventPrecedence[b.type] - EventPrecedence[a.type])
 
         const classes = {
-            "current-date": today.getTime() === this.date.getTime(),
             "normal-event": numEvents == 0 ? false : this.eventData[0].type == EventType.Normal,
             "social-event": numEvents == 0 ? false : this.eventData[0].type == EventType.Social,
             "special-event": numEvents == 0 ? false : this.eventData[0].type == EventType.Special,
@@ -142,7 +135,7 @@ export class CalendarDayElement extends LitElement {
             <div class="${classMap(classes)}">
             <p id="day">${this.date.getDate()}</p>
 
-            ${this.eventData.length > 0 ? html`<strong @click=${(ev: MouseEvent) => this._handleEventClick(ev, this.eventData)}>${this.eventData[0].title}</strong> ${this.eventData.length > 1 ? html`+ ${this.eventData.length - 1}` : "" }` : ""}
+            ${this.eventData.length > 0 ? html`<strong @click=${(ev: MouseEvent) => this._handleEventClick(ev, this.eventData)}>${this.eventData[0].title}</strong> ${this.eventData.length > 1 ? html`+ ${this.eventData.length - 1}` : ""}` : ""}
 
             </div>`
     }
@@ -172,9 +165,9 @@ export class CalendarElement extends LitElement {
     `, defaultButtonStyle]
 
     private _numCalendarCells = minNumCalendarCells;
-    
+
     private _currentDate = new Date();
-    
+
     @state()
     private accessor _offsetDate: Date = new Date(this._currentDate);
 
@@ -264,7 +257,7 @@ export class CalendarElement extends LitElement {
         this._firstDay = new Date(this._offsetDate.getFullYear(), this._offsetDate.getMonth(), 1);
         this._lastDay = new Date(this._offsetDate.getFullYear(), this._offsetDate.getMonth() + 1, 0);
         this._allDays = [];
-        
+
         const firstDayOfWeek = this._firstDay.getDay();
         const todayNormalised = new Date(this._currentDate);
         todayNormalised.setHours(0, 0, 0, 0);
@@ -324,21 +317,17 @@ export class CalendarElement extends LitElement {
     constructor() {
         super()
         this._recalculateCalendar()
-    }   
-    
+    }
+
     protected willUpdate(_changedProperties: any): void {
-        console.log(":)")
 
         if (_changedProperties.has("_offsetDate")) {
             this._recalculateCalendar();
-            console.log(":)")
             this.requestUpdate();
         }
     }
 
     render() {
-
-        console.log(this._allDays)
 
         return html`
         <div id="calendar-topbar">
@@ -352,11 +341,25 @@ export class CalendarElement extends LitElement {
         <div id="calendar-container" @calendar-event-clicked=${this._handleCalendarEventClicked}>
             ${["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => html`<strong class="header-row-day">${d}</strong>`)}
             <!-- This line sometimes has an error, about the type of eventData, ignore it, it doesn't mean anything, there is no fix -->
-            ${this._allDays.map((d) => html`<event-calendar-day .date=${d.date} ?wraparound=${d.wraparound} ?passed=${d.passed} .eventData=${d.events as CalendarEvent[]}></event-calendar-day>`)}
+            ${this._allDays.map((d) => {
+            const todayNormalised = new Date(this._currentDate);
+            todayNormalised.setHours(0, 0, 0, 0)
+
+            const dayClassMap = classMap(
+                {
+                    "passed": d.passed,
+                    "wraparound": d.wraparound,
+                    "current-date": todayNormalised.getTime() === d.date.getTime()
+                }
+            )
+
+            return html`<event-calendar-day .date=${d.date} .eventData=${d.events as CalendarEvent[]} class=${dayClassMap}></event-calendar-day>`
+
+        })} 
         </div>
 
         <window-dialog windowTitle=${this._selectedEvents.length > 1 ? "Events" : "Event"} @window-dialog-closed=${this._closeCalendarEventDialog}>
-            ${this._selectedEvents.length > 0 ? this._selectedEvents.map((e) =>  html`
+            ${this._selectedEvents.length > 0 ? this._selectedEvents.map((e) => html`
             <h2>${e.title}</h2>
             <p>${e.date.toLocaleDateString("en-GB")} ${e.date.getTime() != e.endDate.getTime() ? html`- ${e.endDate.toLocaleDateString("en-GB")}` : ""}</p>
             <p><strong>Location: </strong> ${e.location}</p>
