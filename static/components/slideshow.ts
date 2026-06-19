@@ -1,5 +1,5 @@
 import { html, css, LitElement } from "lit";
-import { property, customElement, state, queryAssignedElements } from "lit/decorators.js";
+import { customElement, state, queryAssignedElements } from "lit/decorators.js";
 import { defaultButtonStyle } from "../styles/buttons";
 import { defaultImageStyle } from "../styles/image";
 import { baseStyles } from "../styles/baseStyles";
