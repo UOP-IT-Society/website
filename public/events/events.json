@@ -1,0 +1,51 @@
+[
+    {
+      "title": "Exams",
+      "date": "2026-10-24",
+      "endDate": "2026-11-01",
+      "type": "exams",
+      "location": "",
+      "description": "Assessment and Referral Period (Mid-term)"
+    },
+    {
+      "title": "Exams",
+      "date": "2026-12-05",
+      "endDate": "2026-12-20",
+      "type": "exams",
+      "location": "",
+      "description": "Assessment and Referral Period (Mid-term)"
+    },
+    {
+      "title": "Christmas",
+      "date": "2026-12-21",
+      "endDate": "2027-01-17",
+      "type": "holiday",
+      "location": "",
+      "description": "Merry Christmas!"
+    },
+    {
+      "title": "Exams",
+      "date": "2027-02-20",
+      "endDate": "2027-02-28",
+      "type": "exams",
+      "location": "",
+      "description": "Assessment and Referral Periods"
+    },
+    {
+      "title": "Easter",
+      "date": "2027-03-20",
+      "endDate": "2027-04-25",
+      "type": "holiday",
+      "location": "",
+      "description": "Happy Easter!"
+    },
+    {
+      "title": "Exams",
+      "date": "2027-04-26",
+      "endDate": "2027-06-04",
+      "type": "exams",
+      "location": "",
+      "description": "The End"
+    }
+  ]
+  

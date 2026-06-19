@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Official website of UOP IT Society - Join us for hackathons, workshops, and tech events at the University of Portsmouth">
-  <meta name="keywords" content="UOP IT Society, Portsmouth University tech society, computer science society, hackathons, coding events">
+  <meta name="description"
+    content="Official website of UOP IT Society - Join us for hackathons, workshops, and tech events at the University of Portsmouth">
+  <meta name="keywords"
+    content="UOP IT Society, Portsmouth University tech society, computer science society, hackathons, coding events">
   <title>UOP IT Society | Computer Science & Tech Community at Portsmouth University</title>
-  <link rel="stylesheet" href="win95.css?v=1">
+  <link rel="stylesheet" href="static/styles/win95.css">
   <link rel="canonical" href="https://itsociety.co.uk/" />
   <link rel="icon" href="static/images/IT_SOC.png" type="image/x-icon">
 
-
-
   <!-- Social Media Meta Tags -->
   <meta property="og:title" content="UOP IT Society | Computer Science & Tech Community">
-  <meta property="og:description" content="Join the UOP IT Society for hackathons, workshops, and tech events at the University of Portsmouth">
+  <meta property="og:description"
+    content="Join the UOP IT Society for hackathons, workshops, and tech events at the University of Portsmouth">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://itsociety.co.uk/">
   <meta property="og:image" content="static/images/IT_SOC.png">
+
+  <!-- Scripts/components -->
+  <script type="module" src="static/components/committee-card.ts"></script>
+  <script type="module" src="static/components/slideshow.ts"></script>
+  <script type="module" src="static/components/calendar.ts"></script>
 </head>
+
 <body>
 
   <script type="text/javascript">
-     function promptAndClose() {
-         if (confirm("Are you sure you want to close this window?")) {
-             alert(`Because of "Security Concerns" we cannot close this tab, however we are able to redirect you`)
-             const opened = window.open("https://zombo.com/", "_top")
-         }  
-     }
+    function promptAndClose() {
+      if (confirm("Are you sure you want to close this window?")) {
+        alert(`Because of "Security Concerns" we cannot close this tab, however we are able to redirect you`)
+        const opened = window.open("https://zombo.com/", "_top")
+      }
+    }
   </script>
 
   <div class="window">
@@ -40,24 +48,28 @@
       </div>
     </div>
 
-  <div class="menu-bar">
-    <a href="#home" class="menu-item">Home</a>
-    <a href="#committee" class="menu-item">Committee</a>
-    <a href="#events" class="menu-item">Events</a>
-    <a href="#about" class="menu-item">About</a>
-    <a href="https://discord.gg/B2pVEvWZW5" class="menu-item">Discord</a>
-    <a href="https://www.instagram.com/theitsoc/" class="menu-item">Instagram</a>
-    <a href="https://upsu.net/groups/BPX8J/it-society" class="menu-item">Union Pages</a>
-    <a href="cfncs.html" class="menu-item">Python for Non-Computing Students</a>
-  </div>
+    <div class="menu-bar">
+      <a href="#home" class="menu-item">Home</a>
+      <a href="#committee" class="menu-item">Committee</a>
+      <a href="#events" class="menu-item">Events</a>
+      <a href="#about" class="menu-item">About</a>
+      <a href="https://discord.gg/B2pVEvWZW5" class="menu-item">Discord</a>
+      <a href="https://www.instagram.com/theitsoc/" class="menu-item">Instagram</a>
+      <a href="https://upsu.net/groups/BPX8J/it-society" class="menu-item">Union Pages</a>
+      <a href="/cfncs/" class="menu-item">Python for Non-Computing Students</a>
+    </div>
 
 
-    <div  id="home" class="content">
+    <div id="home" class="content">
       <h2>Welcome to the UOP IT Society</h2>
       <p>The place to be for all things computing.</p>
 
       <h3 id="about">About The IT Society</h3>
-      <p>The IT Society is an academic and social group aimed at supporting students who are taking a computing-based course or are interested in learning about IT. We run sessions covering all disciplines, from coding to cyber security to networking, we have something for everyone. We meet every Thursday in the FTC building and have bi-weekly socials on a Friday. In our sessions, we run a number of workshops, talks, and events throughout the year.</p>
+      <p>The IT Society is an academic and social group aimed at supporting students who are taking a computing-based
+        course or are interested in learning about IT. We run sessions covering all disciplines, from coding to cyber
+        security to networking, we have something for everyone. We meet every Thursday in the FTC building and have
+        bi-weekly socials on a Friday. In our sessions, we run a number of workshops, talks, and events throughout the
+        year.</p>
 
       <h4>Regular Activities</h4>
       <ul>
@@ -69,66 +81,41 @@
       </ul>
 
 
-    <h4 id="events">Upcoming Events</h4>
-      <div id="events-container">
-        <p>Loading events...</p>
-      </div>
+      <h4 id="events">What's on</h4>
 
-    <h4>Past Events</h4>
-    <div id="slideshow-container">
-      <div class="image-container">
-        <img id="slideshow-image" src="static/images/your-photo-1.jpg" alt="A photo of the IT society members">
-      </div>
-      <div id="slideshow-controls">
-        <button id="prev-btn" class="button">&lt; Prev</button>
-        <span id="image-counter">Image 1 / 5</span>
-        <button id="next-btn" class="button">Next &gt;</button>
-      </div>
-    </div>
+      <p>Click on each event to find out more. If the calendar is empty, no events have been planned for that month yet. For the most up to date information see our Discord.</p>
 
-      <h4 id="committee" >Our Current Committee</h4>
+      <event-calendar src="/events/events.json"></event-calendar>
+
+      <h4>Past Events</h4>
+
+      <slide-show>
+        <img src="static/images/homeSlideshow/bbq.jpg" alt="BBQ">
+        <img src="static/images/homeSlideshow/boardgame.jpg" alt="Boardgame night">
+        <img src="static/images/homeSlideshow/learngit.png" alt="Learn Git">
+        <img src="static/images/homeSlideshow/christmas_dinner.jpg" alt="Christmas dinner">
+        <img src="static/images/homeSlideshow/bonfire.jpg" alt="Bonfire night">
+        <img src="static/images/homeSlideshow/IMG_0003.JPG" alt="">
+      </slide-show>
+
+      <h4 id="committee">Our Current Committee</h4>
       <ul class="committee-list">
-        
-        <li class="committee-item">
-          <strong>Michael Parker</strong> - President<br>
-          Computer Science 2nd Year<br>
-          He/Him<br>
-          Likes open source stuff<br>
-          <div class="link-list">
-            <a href="https://www.linkedin.com/in/michaelrbparker/" target="_blank">LinkedIn</a> |
-            <a href="https://github.com/micfun123" target="_blank">GitHub</a> |
-            <a href="mailto:up2263259@myport.ac.uk">Email</a> |
-            <a href="https://www.michaelrbparker.com" target="_blank">Website</a>
-          </div>
-        </li>
 
+        <committee-card name="Oscar Peace" role="President" course="Computer Science, 3rd Year" pronouns="he/him"
+          bio="computah, Fedora is great">
+          <a href="https://www.linkedin.com/in/oscar-peace-a34495315/" target="_blank">LinkedIn</a>
+          <a href="https://github.com/sccreeper" target="_blank">GitHub</a>
+          <a href="https://www.oscarcp.net/" target="_blank">Website</a>
+        </committee-card>
 
-        <li class="committee-item"><strong>Sam Blewitt</strong> - Events Secretary<br>
-          Computer Science 3rd Year<br>
-          He/Him<br>⚠ Will not stop talking about planes ⚠
-          <br> <div class="link-list">
-            <a href="https://www.linkedin.com/in/sam-blewitt/" target="_blank">LinkedIn</a> |
-            <a href="https://www.sambot.dev/" target="_blank">Website</a> |
-            <a href="https://github.com/wotanuts" target="_blank">GitHub</a>
-        </li>
+        <committee-card name="Pete" role="Secretary" course="Games Tech, 3rd year" pronouns=""
+          bio="">
+          <a href="https://github.com/PD-2272835" target="_blank">GitHub</a>
+        </committee-card>
 
-        <li class="committee-item"><strong>Anna Rejlová</strong> - Treasurer<br>
-          Computer Science 2nd Year<br>
-          He/She/They<br>Obsessed with fanfictions. 💕
-          <br> <div class="link-list">
-            <a href="https://www.linkedin.com/in/anirejlova/" target="_blank">LinkedIn</a> |
-            <a href="https://github.com/anirejlova" target="_blank">GitHub</a>
-        </li>
-
-        <li class="committee-item"><strong>Scarlett</strong> - Welfare<br>
-          Software Engineering 2nd Year<br>
-          She/Her<br>No games ps5
-          <br> <div class="link-list">
-            <a href="https://www.linkedin.com/in/alex-larder-066692258/" target="_blank">LinkedIn</a> |
-            <a href="https://www.scarlettlarder.com/" target="_blank">Website</a> |
-            <a href="https://github.com/Scarlett-Larder" target="_blank">GitHub</a>
-        </li>
-              
+        <committee-card name="Anna Kennewell" role="Welfare Officer" course="Computer Science, 3rd Year" pronouns="she/her"
+          bio="Lover of hackathons, competitive coding and spreadsheets">
+        </committee-card>
 
       </ul>
       <div style="text-align: center; margin-top: 20px;">
@@ -136,131 +123,84 @@
           View Past Committees
         </a>
       </div>
-    </div>    
+    </div>
   </div>
 
   <div id="popup">
     <div class="popup-content">
       <div class="achievement">
         <span class="circle">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span class="logo"></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span class="logo"></span>
         </span>
-        <span class="text"><b>Achievement unlocked</b><br/>
-        How did we get here?</span>
-    </div>
+        <span class="text"><b>Achievement unlocked</b><br />
+          How did we get here?</span>
+      </div>
       <button id="closeBtn">Close</button>
     </div>
   </div>
-  
-  <script src="events.js"></script>
 
-  
-<script>
-  const popup = document.getElementById('popup');
-  const closeBtn = document.getElementById('closeBtn');
+  <script>
+    const popup = document.getElementById('popup');
+    const closeBtn = document.getElementById('closeBtn');
 
-  const konamiCode = [
-    'ArrowUp', 'ArrowUp',
-    'ArrowDown', 'ArrowDown',
-    'ArrowLeft', 'ArrowRight',
-    'ArrowLeft', 'ArrowRight',
-    'b', 'a'
-  ];
-
-  let inputSequence = [];
-
-  window.addEventListener('keydown', function(e) {
-    inputSequence.push(e.key);
-
-    // Only keep last N keys
-    if (inputSequence.length > konamiCode.length) {
-      inputSequence.shift();
-    }
-
-    // Check if sequence matches
-    if (inputSequence.join('') === konamiCode.join('')) {
-      popup.style.display = 'flex';
-      setTimeout(function(){
-        //popout
-        document.getElementsByClassName("achievement")[0].className = "achievement out";
-        //play the sound (not sure about the timing)
-          const audio = new Audio('https://centracomm.cachefly.net/majornelson/2007/Achievement-mp3-sound.mp3');
-          audio.play();
-      }, 1000);
-    }
-  });
-
-
-  closeBtn.addEventListener('click', () => {
-    popup.style.animation = 'popupFadeOut 0.5s ease forwards';
-    setTimeout(() => {
-      popup.style.display = 'none';
-      popup.style.animation = 'popupFadeIn 0.5s ease forwards'; // Reset animation for next time
-    }, 500);
-  });
-</script>
-
-<footer style="margin-top: 20px; text-align: center; font-size: 14px;">
-  <div itemscope itemtype="https://schema.org/CollegeOrUniversity">
-    <span itemprop="name">University of Portsmouth</span>
-    <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-      <span itemprop="streetAddress">University House, Winston Churchill Ave</span>,
-      <span itemprop="addressLocality">Portsmouth</span>,
-      <span itemprop="postalCode">PO1 2UP</span>,
-      <span itemprop="addressCountry">United Kingdom</span>
-    </div>
-  </div>
-  <p>© 2025 UOP IT Society. All rights reserved.</p>
-</footer>
-
-<script>
-  // Wait for the document to be fully loaded before running the script
-  document.addEventListener('DOMContentLoaded', () => {
-    
-    const images = [
-      'static/images/bbq.jpg',
-      'static/images/boardgame.jpg',
-      'static/images/learngit.png',
-      'static/images/christmas_dinner.jpg',
-      'static/images/bonfire.jpg',
-      'static/images/IMG_0003.JPG'
+    const konamiCode = [
+      'ArrowUp', 'ArrowUp',
+      'ArrowDown', 'ArrowDown',
+      'ArrowLeft', 'ArrowRight',
+      'ArrowLeft', 'ArrowRight',
+      'b', 'a'
     ];
 
-    const slideshowImage = document.getElementById('slideshow-image');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const imageCounter = document.getElementById('image-counter');
+    let inputSequence = [];
 
-    let currentIndex = 0;
+    window.addEventListener('keydown', function (e) {
+      inputSequence.push(e.key);
 
-    // --- Core Function to Display an Image ---
-    function showImage(index) {
-      slideshowImage.src = images[index];
-      imageCounter.textContent = `Image ${index + 1} / ${images.length}`;
-    }
-
-    // --- Event Listeners for Buttons ---
-    nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % images.length;
-      showImage(currentIndex);
-    });
-
-    prevBtn.addEventListener('click', () => {
-      if (currentIndex === 0) {
-        currentIndex = images.length - 1;
-      } else {
-        currentIndex = currentIndex - 1;
+      // Only keep last N keys
+      if (inputSequence.length > konamiCode.length) {
+        inputSequence.shift();
       }
-      showImage(currentIndex);
+
+      // Check if sequence matches
+      if (inputSequence.join('') === konamiCode.join('')) {
+        popup.style.display = 'flex';
+        setTimeout(function () {
+          //popout
+          document.getElementsByClassName("achievement")[0].className = "achievement out";
+          //play the sound (not sure about the timing)
+          const audio = new Audio('https://centracomm.cachefly.net/majornelson/2007/Achievement-mp3-sound.mp3');
+          audio.play();
+        }, 1000);
+      }
     });
 
-    showImage(currentIndex);
-  });
-</script>
+
+    closeBtn.addEventListener('click', () => {
+      popup.style.animation = 'popupFadeOut 0.5s ease forwards';
+      setTimeout(() => {
+        popup.style.display = 'none';
+        popup.style.animation = 'popupFadeIn 0.5s ease forwards'; // Reset animation for next time
+      }, 500);
+    });
+  </script>
+
+  <footer style="margin-top: 20px; text-align: center; font-size: 14px;">
+    <div itemscope itemtype="https://schema.org/CollegeOrUniversity">
+      <span itemprop="name">University of Portsmouth</span>
+      <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+        <span itemprop="streetAddress">University House, Winston Churchill Ave</span>,
+        <span itemprop="addressLocality">Portsmouth</span>,
+        <span itemprop="postalCode">PO1 2UP</span>,
+        <span itemprop="addressCountry">United Kingdom</span>
+      </div>
+    </div>
+    <p>© 2026 UOP IT Society. All rights reserved.</p>
+  </footer>
 
 </body>
+
 </html>
