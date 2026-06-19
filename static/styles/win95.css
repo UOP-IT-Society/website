@@ -1,7 +1,7 @@
 /* Mobile-first approach */
 @font-face {
   font-family: win-95-font;
-  src: url('./W95FA.otf') format('truetype');
+  src: url('../fonts/W95FA.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
