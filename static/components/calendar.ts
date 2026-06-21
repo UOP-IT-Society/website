@@ -133,7 +133,13 @@ export class CalendarDayElement extends LitElement {
 
         return html`
             <div class="${classMap(classes)}">
-            <p id="day">${this.date.getDate()}</p>
+            <p id="day">
+            ${this.date.getDate()}
+            <!-- Easter eggs -->
+            ${(this.date.getMonth() == 11 && this.date.getDate() == 25) ? html`<x-icon iconName="it-christmas-tree" size="14"></x-icon>` : ""}
+            ${(this.date.getMonth() == 0 && this.date.getDate() == 1) ? html`<x-icon iconName="it-fireworks" size="14"></x-icon>` : ""}
+            ${(this.eventData.length > 0 && this.eventData[0].type == EventType.Social) ? html`<x-icon iconName="it-beer" size="14"></x-icon>` : ""}
+            </p>
 
             ${this.eventData.length > 0 ? html`<strong @click=${(ev: MouseEvent) => this._handleEventClick(ev, this.eventData)}>${this.eventData[0].title}</strong> ${this.eventData.length > 1 ? html`+ ${this.eventData.length - 1}` : ""}` : ""}
 

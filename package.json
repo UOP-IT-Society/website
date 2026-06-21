@@ -9,9 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lit": "^3.3.2"
+    "glob": "^13.0.6",
+    "lit": "^3.3.2",
+    "pixelarticons": "^2.1.2"
   },
   "devDependencies": {
+    "@types/node": "^26.0.0",
     "typescript": "~6.0.2",
     "vite": "^8.0.12"
   }

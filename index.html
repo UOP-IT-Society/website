@@ -25,6 +25,7 @@
   <script type="module" src="static/components/committee-card.ts"></script>
   <script type="module" src="static/components/slideshow.ts"></script>
   <script type="module" src="static/components/calendar.ts"></script>
+  <script type="module" src="static/components/icon.ts"></script>
 </head>
 
 <body>
@@ -64,7 +65,7 @@
       <h2>Welcome to the UOP IT Society</h2>
       <p>The place to be for all things computing.</p>
 
-      <h3 id="about">About The IT Society</h3>
+      <h3 id="about"> <x-icon iconName="info-box" size="20"></x-icon> About The IT Society</h3>
       <p>The IT Society is an academic and social group aimed at supporting students who are taking a computing-based
         course or are interested in learning about IT. We run sessions covering all disciplines, from coding to cyber
         security to networking, we have something for everyone. We meet every Thursday in the FTC building and have
@@ -81,13 +82,13 @@
       </ul>
 
 
-      <h4 id="events">What's on</h4>
+      <h3 id="events"><x-icon iconName="calendar-2" size="20"></x-icon> What's on</h3>
 
       <p>Click on each event to find out more. If the calendar is empty, no events have been planned for that month yet. For the most up to date information see our Discord.</p>
 
       <event-calendar src="/events/events.json"></event-calendar>
 
-      <h4>Past Events</h4>
+      <h3>Past Events</h3>
 
       <slide-show>
         <img src="static/images/homeSlideshow/bbq.jpg" alt="BBQ">
@@ -98,7 +99,7 @@
         <img src="static/images/homeSlideshow/IMG_0003.JPG" alt="">
       </slide-show>
 
-      <h4 id="committee">Our Current Committee</h4>
+      <h3 id="committee">Our Current Committee</h3>
       <ul class="committee-list">
 
         <committee-card name="Oscar Peace" role="President" course="Computer Science, 3rd Year" pronouns="he/him"
