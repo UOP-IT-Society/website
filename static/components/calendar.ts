@@ -225,6 +225,14 @@ export class CalendarElement extends LitElement {
             font-size: 24px;
             font-weight: bold;
             cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+
+            width: 18px;
+            height: 64px;
         }
 
         .scroll-arrow.hidden {
