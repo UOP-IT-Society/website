@@ -50,15 +50,15 @@
       "description" : "Icebreaker event consisting of a ~25 minute treasure hunt through Portsmouth (PRIZES ON OFFER). Followed by drinks at the Deco - alcohol is optional."
     },
     {
-      "title" : "CFNCS W1",
+      "title" : "CCIC W1",
       "date" : "2026-09-23",
       "time" : "14:00 - 15:00",
       "type" : "normal",
       "location" : "TBD",
-      "description" : "Coding For None Coders induction session"
+      "description" : "Crash Course in Coding induction session"
     },
     {
-      "title" : "CFNCS W2",
+      "title" : "CCIC W2",
       "date" : "2026-09-30",
       "time" : "14:00 - 15:00",
       "type" : "normal",
@@ -66,7 +66,7 @@
       "description" : "Variables, data types, and basic maths"
     },
     {
-      "title" : "CFNCS W3",
+      "title" : "CCIC W3",
       "date" : "2026-10-07",
       "time" : "14:00 - 15:00",
       "type" : "normal",
@@ -74,7 +74,7 @@
       "description" : "Boolean operations and branching"
     },
     {
-      "title" : "CFNCS W4",
+      "title" : "CCIC W4",
       "date" : "2026-10-14",
       "time" : "14:00 - 15:00",
       "type" : "normal",
@@ -82,7 +82,7 @@
       "description" : "Lists sets and dictionaries"
     },
     {
-      "title" : "CFNCS W5",
+      "title" : "CCIC W5",
       "date" : "2026-10-21",
       "time" : "14:00 - 15:00",
       "type" : "normal",
