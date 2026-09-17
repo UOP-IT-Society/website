@@ -44,7 +44,7 @@
     {
       "title": "Ice Breaker",
       "date" : "2026-09-25",
-      "time" : "18:00 - 20:00",
+      "time" : [[18, 0], [20, 0]],
       "type" : "social",
       "location" : "Guildhall Square & Deco",
       "description" : "Icebreaker event consisting of a ~25 minute treasure hunt through Portsmouth (PRIZES ON OFFER). Followed by drinks at the Deco - alcohol is optional."
@@ -52,7 +52,7 @@
     {
       "title" : "CCIC W1",
       "date" : "2026-09-23",
-      "time" : "14:00 - 15:00",
+      "time" : [[14, 0], [15, 0]],
       "type" : "normal",
       "location" : "TBD",
       "description" : "Crash Course in Coding induction session"
@@ -60,7 +60,7 @@
     {
       "title" : "CCIC W2",
       "date" : "2026-09-30",
-      "time" : "14:00 - 15:00",
+      "time" : [[14, 0], [15, 0]],
       "type" : "normal",
       "location" : "TBD",
       "description" : "Variables, data types, and basic maths"
@@ -68,7 +68,7 @@
     {
       "title" : "CCIC W3",
       "date" : "2026-10-07",
-      "time" : "14:00 - 15:00",
+      "time" : [[14, 0], [15, 0]],
       "type" : "normal",
       "location" : "TBD",
       "description" : "Boolean operations and branching"
@@ -76,7 +76,7 @@
     {
       "title" : "CCIC W4",
       "date" : "2026-10-14",
-      "time" : "14:00 - 15:00",
+      "time" : [[14, 0], [15, 0]],
       "type" : "normal",
       "location" : "TBD",
       "description" : "Lists sets and dictionaries"
@@ -84,7 +84,7 @@
     {
       "title" : "CCIC W5",
       "date" : "2026-10-21",
-      "time" : "14:00 - 15:00",
+      "time" : [[14, 0], [15, 0]],
       "type" : "normal",
       "location" : "TBD",
       "description" : "Functions and loops"

@@ -3,6 +3,7 @@ import { property, customElement, query, state } from "lit/decorators.js";
 import { classMap } from 'lit/directives/class-map.js';
 import { WindowDialog } from "./window-dialog";
 import { defaultButtonStyle } from "../styles/buttons";
+import * as ics from "ics";
 
 const minNumCalendarCells = 35;
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -43,7 +44,7 @@ interface CalendarEvent {
     description: string,
     date: Date,
     endDate: Date,
-    time: string,
+    time: [[number, number], [number, number]],
 }
 
 interface CalendarDayData {
@@ -273,7 +274,7 @@ export class CalendarElement extends LitElement {
     private _allDays: CalendarDayData[] = []
 
     @state()
-    private accessor _overflowSides = {left: false, right: false};
+    private accessor _overflowSides = { left: false, right: false };
 
     private _resizeObserver: ResizeObserver;
 
@@ -285,6 +286,12 @@ export class CalendarElement extends LitElement {
 
     @query("window-dialog")
     private accessor _dialogElement!: WindowDialog;
+
+    constructor() {
+        super()
+        this._resizeObserver = new ResizeObserver(this._checkOverflow);
+        this._recalculateCalendar();
+    }
 
     private async _loadEventsSrc() {
 
@@ -363,6 +370,39 @@ export class CalendarElement extends LitElement {
         this._offsetDate = newDate;
     }
 
+    private _downloadIcsFile(event: CalendarEvent) {
+
+        const icsEvent: ics.EventAttributes = {
+            start: event.time ? [event.date.getFullYear(), event.date.getMonth() + 1, event.date.getDate(), event.time[0][0], event.time[0][1]] :
+                [event.date.getFullYear(), event.date.getMonth() + 1, event.date.getDate()],
+            end: event.time ? [event.endDate.getFullYear(), event.endDate.getMonth() + 1, event.endDate.getDate(), event.time[1][0], event.time[1][1]] :
+                [event.endDate.getFullYear(), event.endDate.getMonth() + 1, event.endDate.getDate()],
+            endInputType: "local",
+            endOutputType: "local",
+            title: `ITSOC - ${event.title}`,
+            description: `${event.type} - ${event.description}`,
+            location: event.location ?? "",
+            status: "CONFIRMED",
+        }
+
+        ics.createEvent(icsEvent, (error, value) => {
+            if (error) {
+                console.log(error)
+                return
+            }
+
+            const blob = new Blob([value], { type: "text/calendar;charset=utf-8" })
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "event.ics";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        })
+    }
+
     private _recalculateCalendar() {
 
         this._numCalendarCells = minNumCalendarCells;
@@ -426,12 +466,6 @@ export class CalendarElement extends LitElement {
         this._loadEventsSrc();
     }
 
-    constructor() {
-        super()
-        this._resizeObserver = new ResizeObserver(this._checkOverflow);
-        this._recalculateCalendar();
-    }
-
     protected willUpdate(_changedProperties: any): void {
 
         if (_changedProperties.has("_offsetDate")) {
@@ -443,7 +477,7 @@ export class CalendarElement extends LitElement {
     private _checkOverflow() {
 
         const calendarContainer = this.renderRoot.querySelector("#calendar-container")!;
-        
+
         const PADDING = 1;
         const maxScrollLeft = calendarContainer.scrollWidth - calendarContainer.clientWidth;
 
@@ -474,9 +508,9 @@ export class CalendarElement extends LitElement {
 
     protected firstUpdated(_changedProperties: PropertyValues): void {
         const calendarContainer = this.renderRoot.querySelector("#calendar-container")!;
-        
+
         this._resizeObserver.observe(calendarContainer);
-        calendarContainer.addEventListener("scroll", this._checkOverflow.bind(this), {passive: true});
+        calendarContainer.addEventListener("scroll", this._checkOverflow.bind(this), { passive: true });
         this._checkOverflow();
     }
 
@@ -492,28 +526,28 @@ export class CalendarElement extends LitElement {
         </div>
 
         <div id="calendar-wrapper">
-            <div @click=${this._scrollLeft} class="scroll-arrow left ${classMap({hidden: !this._overflowSides.left})}" role="button" aria-label="Scroll left">&lt;</div>
-            <div @click=${this._scrollRight} class="scroll-arrow right ${classMap({hidden: !this._overflowSides.right})}" role="button" aria-label="Scroll right">&gt;</div>
+            <div @click=${this._scrollLeft} class="scroll-arrow left ${classMap({ hidden: !this._overflowSides.left })}" role="button" aria-label="Scroll left">&lt;</div>
+            <div @click=${this._scrollRight} class="scroll-arrow right ${classMap({ hidden: !this._overflowSides.right })}" role="button" aria-label="Scroll right">&gt;</div>
 
             <div id="calendar-container" @calendar-event-clicked=${this._handleCalendarEventClicked}>
 
                 ${["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => html`<strong class="header-row-day">${d}</strong>`)}
-                <!-- This line sometimes has an error, about the type of eventData, ignore it, it doesn't mean anything, there is no fix -->
+                <!-- This map sometimes has an error, about the type of eventData, ignore it, it doesn't mean anything, there is no fix -->
                 ${this._allDays.map((d) => {
-                const todayNormalised = new Date(this._currentDate);
-                todayNormalised.setHours(0, 0, 0, 0)
+            const todayNormalised = new Date(this._currentDate);
+            todayNormalised.setHours(0, 0, 0, 0)
 
-                const dayClassMap = classMap(
-                    {
-                        "passed": d.passed,
-                        "wraparound": d.wraparound,
-                        "current-date": todayNormalised.getTime() === d.date.getTime()
-                    }
-                )
+            const dayClassMap = classMap(
+                {
+                    "passed": d.passed,
+                    "wraparound": d.wraparound,
+                    "current-date": todayNormalised.getTime() === d.date.getTime()
+                }
+            )
 
-                return html`<event-calendar-day .date=${d.date} .eventData=${d.events as CalendarEvent[]} .wraparound=${d.wraparound} .viewStartDate=${this._allDays[0].date} .viewEndDate=${this._allDays[this._allDays.length - 1].date} class=${dayClassMap}></event-calendar-day>`
+            return html`<event-calendar-day .date=${d.date} .eventData=${d.events as CalendarEvent[]} .wraparound=${d.wraparound} .viewStartDate=${this._allDays[0].date} .viewEndDate=${this._allDays[this._allDays.length - 1].date} class=${dayClassMap}></event-calendar-day>`
 
-            })} 
+        })} 
             </div>
         </div>
 
@@ -521,13 +555,20 @@ export class CalendarElement extends LitElement {
             ${this._selectedEvents.length > 0 ? this._selectedEvents.map((e) => html`
             <h2>${e.title}</h2>
             <p><x-icon iconName="calendar" size="15"></x-icon> ${e.date.toLocaleDateString("en-GB")} ${e.date.getTime() != e.endDate.getTime() ? html`- ${e.endDate.toLocaleDateString("en-GB")}` : ""}
-            ${e.time ? html`<x-icon iconName="alarm-clock" size="15"></x-icon> ${e.time}` : ""}
+            ${e.time ? html`<x-icon iconName="alarm-clock" size="15"></x-icon> ${formatTime(e.time[0])} - ${formatTime(e.time[1])}` : ""}
             ${e.location ? html`<x-icon iconName="map-pin" size="15"></x-icon> ${e.location}` : ""}
             </p>
             <p><strong>Description: </strong> ${e.description}</p>
+            <button @click=${() => { this._downloadIcsFile(e) }}><x-icon iconName="download" size="15"></x-icon> Add to calendar</button>
             `) : ""}
         </window-dialog>
         `
     }
+
+}
+
+function formatTime(time: [number, number]): string {
+
+    return `${String(time[0]).padStart(2, "0")}:${String(time[1]).padStart(2, "0")}`
 
 }
