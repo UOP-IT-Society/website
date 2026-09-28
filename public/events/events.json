@@ -54,7 +54,7 @@
       "date" : "2026-09-23",
       "time" : [[14, 0], [15, 0]],
       "type" : "normal",
-      "location" : "TBD",
+      "location" : "FTC Floor 1",
       "description" : "Crash Course in Coding induction session"
     },
     {
@@ -62,7 +62,7 @@
       "date" : "2026-09-30",
       "time" : [[14, 0], [15, 0]],
       "type" : "normal",
-      "location" : "TBD",
+      "location" : "FTC Floor 1",
       "description" : "Variables, data types, and basic maths"
     },
     {
@@ -70,7 +70,7 @@
       "date" : "2026-10-07",
       "time" : [[14, 0], [15, 0]],
       "type" : "normal",
-      "location" : "TBD",
+      "location" : "FTC Floor 2",
       "description" : "Boolean operations and branching"
     },
     {
@@ -78,7 +78,7 @@
       "date" : "2026-10-14",
       "time" : [[14, 0], [15, 0]],
       "type" : "normal",
-      "location" : "TBD",
+      "location" : "FTC Floor 1",
       "description" : "Lists sets and dictionaries"
     },
     {
@@ -86,7 +86,39 @@
       "date" : "2026-10-21",
       "time" : [[14, 0], [15, 0]],
       "type" : "normal",
-      "location" : "TBD",
+      "location" : "FTC Floor 1",
       "description" : "Functions and loops"
+    },
+    {
+      "title" : "Git 101",
+      "date" : "2026-10-01",
+      "time" : [[16, 0], [17, 0]],
+      "type" : "normal",
+      "location" : "FTC Floor 1",
+      "description" : "Learn the basics of Git and GitHub"
+    },
+    {
+      "title" : "Lightning Talks",
+      "time" : [[17, 0], [18, 0]],
+      "type" : "normal",
+      "date" : "2026-10-09",
+      "location" : "TBD",
+      "description" : ""
+    },
+    {
+      "title" : "Deco Pub Quiz & Social",
+      "time" : [[18, 30], [23, 59]],
+      "type" : "social",
+      "date" : "2026-10-15",
+      "location" : "The Deco",
+      "description" : "Pub quiz at the Deco"
+    },
+    {
+      "title" : "Support Session",
+      "time" : [[16, 0], [18, 0]],
+      "type" : "normal",
+      "date" : "2026-10-23",
+      "location" : "TBD",
+      "description" : "Support session for exams & coursework"
     }
 ]  
