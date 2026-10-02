@@ -6,6 +6,7 @@
   - [Development](#development)
 - [Project structure](#project-structure)
 - [Event format](#event-format)
+- [Markdown](#markdown)
 
 
 ## Project notes
@@ -41,7 +42,7 @@ You can probably infer from the existing events in `eventsTest.json` and `events
     {
         "title" : "A Title",
         "date" : "1970-01-01", //yyyy-mm-dd
-        "time" : "09:41", // optional, can be any string, but should really be a time
+        "time" : [[9, 41], [10, 0]], // optional, formatted as [[h, m], [h, m]]
         "type" : "special",
         "endDate" : "1970-01-02", // optional
         "location" : "Somewhere over the rainbow", // optional
@@ -53,3 +54,13 @@ You can probably infer from the existing events in `eventsTest.json` and `events
 
 - `endDate` is optional, if not included it will be filled in as the given start date, which is required. While it is possible to add times to the dates, this is not recommended as the calendar logic assumes that all events start at midnight.
 - `type` can be one of the following: `normal`, `social`, `special`, `holiday`, `exams`. These will be displayed as different colours on the calendar. It is recommended you use `special` for one off events like Hack Pompey, or collabs etc.
+
+## Markdown
+
+Markdown can be embedded in pages using the syntax:
+
+```html
+<!-- md:article.md -->
+```
+
+An example of this can be found in `lectures/index.html`.

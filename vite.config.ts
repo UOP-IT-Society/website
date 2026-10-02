@@ -1,7 +1,10 @@
-import { resolve } from 'node:path'
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
 import fs from "fs";
 import { globSync } from 'glob';
+import { marked } from 'marked';
+
 
 // Something horrible to get the icons to work
 function scannedIconsPlugin() {
@@ -57,14 +60,40 @@ function scannedIconsPlugin() {
   };
 }
 
+function inlineMarkdown(): Plugin {
+  const re = /<!--\s*md:\s*(\S+?)\s*-->/g
+
+  return {
+    name: "inline-markdown",
+    transformIndexHtml: {
+      order: "pre",
+      handler(html, ctx) {
+        return html.replace(re, (_, file: string) => {
+          const abs = resolve(dirname(ctx.filename), file)
+          const content = readFileSync(abs, "utf-8")
+          return marked.parse(content, {async: false})
+        })
+      }
+    },
+    configureServer(server) {
+      server.watcher.on("change", (f) => {
+        if (f.endsWith(".md")) {
+          server.ws.send({type: "full-reload"})
+        }
+      })
+    }
+  }
+
+}
+
 
 export default defineConfig({
-  plugins: [scannedIconsPlugin()],
+  plugins: [scannedIconsPlugin(), inlineMarkdown()],
   build: {
     rolldownOptions: {
       input: {
         main: resolve(import.meta.dirname, 'index.html'),
-        nested: resolve(import.meta.dirname, 'cfncs/index.html'),
+        lectures: resolve(import.meta.dirname, 'lectures/index.html'),
         links: resolve(import.meta.dirname, 'links/index.html'),
       },
     },
