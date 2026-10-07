@@ -107,9 +107,9 @@
     },
     {
       "title" : "Deco Pub Quiz & Social",
-      "time" : [[18, 30], [23, 59]],
+      "time" : [[19, 0], [23, 59]],
       "type" : "social",
-      "date" : "2026-10-15",
+      "date" : "2026-10-13",
       "location" : "The Deco",
       "description" : "Pub quiz at the Deco"
     },
