@@ -28,7 +28,7 @@ Crash Course in Coding is a 10 week course delivered by Anna & Oscar designed to
 
 - [Week 1](https://docs.google.com/presentation/d/1Y5-g2BaowOMigIQQHoQm8HcHHFjD8VPr/edit?usp=drive_link&ouid=112791123721061705256&rtpof=true&sd=true) - Induction session, installing Python and a bit of background about the language
 - [Week 2](https://docs.google.com/presentation/d/1YHLN_DJHy5VreioQ5ZZ7Wpi6UTBuZjZ_/edit?usp=drive_link&ouid=112791123721061705256&rtpof=true&sd=true) - Variables, data types, and basic maths
-- Week 3 - Booleans & branches
+- [Week 3](https://docs.google.com/presentation/d/1qr716GDmorQiDzcumzVkI93YOPwB-SSg/edit?usp=drive_link&ouid=112791123721061705256&rtpof=true&sd=true) - Boolean conditions & error spotting
 - Week 4 - Lists, sets, and dictionaries
 - Week 5 - Functions and loops
 
