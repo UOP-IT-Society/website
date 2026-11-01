@@ -120,5 +120,53 @@
       "date" : "2026-10-23",
       "location" : "TBD",
       "description" : "Support session for exams & coursework"
+    },
+    {
+      "title" : "CCIC W6",
+      "time" : [[14, 0], [15, 0]],
+      "type" : "normal",
+      "date" : "2026-11-04",
+      "location" : "FTC Floor 1",
+      "description" : "Week 6 of CCIC"
+    },
+        {
+      "title" : "CCIC W7",
+      "time" : [[14, 0], [15, 0]],
+      "type" : "normal",
+      "date" : "2026-11-11",
+      "location" : "FTC Floor 1",
+      "description" : "Week 7 of CCIC"
+    },
+        {
+      "title" : "CCIC W8",
+      "time" : [[14, 0], [15, 0]],
+      "type" : "normal",
+      "date" : "2026-11-18",
+      "location" : "FTC Floor 1",
+      "description" : "Week 8 of CCIC"
+    },
+    {
+      "title" : "CCIC W9",
+      "time" : [[14, 0], [15, 0]],
+      "type" : "normal",
+      "date" : "2026-11-25",
+      "location" : "FTC Floor 1",
+      "description" : "Week 9 of CCIC"
+    },
+    {
+      "title" : "Hack Pompey",
+      "type" : "special",
+      "date" : "2026-11-21",
+      "endDate" : "2026-11-28",
+      "location" : "Online",
+      "description" : "Hack Pompey https://hackpompey.co.uk/"
+    },
+    {
+      "title" : "Advent of Code",
+      "type" : "special",
+      "date" : "2026-12-01",
+      "location" : "Online",
+      "description" : "Start of Advent of Code https://adventofcode.com/"
     }
+
 ]  
