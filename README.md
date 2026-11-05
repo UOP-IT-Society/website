@@ -7,6 +7,7 @@
 - [Project structure](#project-structure)
 - [Event format](#event-format)
 - [Markdown](#markdown)
+- [Icons](#icons)
 
 
 ## Project notes
@@ -64,3 +65,12 @@ Markdown can be embedded in pages using the syntax:
 ```
 
 An example of this can be found in `lectures/index.html`.
+
+## Icons
+
+Icons are supported using the `<x-icon name="icon-name" size="24"></x-icon>` custom element. The [pixelarticons](https://pixelarticons.com/) package/registry is used. You have to set the size manually, I haven't figured out a way to automatically inherit from the parent element. Here's a list of good defaults for convenience:
+
+- H1: 35
+- H3: 24
+
+Please note that the development server may need to be fully restarted (i.e. Ctrl+C, then running `npm run dev` again) in order for new icons to be recognised properly.

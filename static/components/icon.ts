@@ -11,19 +11,23 @@ export class IconElement extends LitElement {
   @property({ type: Number }) accessor size: number = 24;
 
   static styles = css`
-    :host {
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 0;
-    }
-    .svg-container svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
+  :host {
+    display: inline-block;
+    vertical-align: text-bottom;
+    width: var(--size, 1em);
+    height: var(--size, 1em);
+    line-height: 0;
+  }
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
   `;
 
   render() {
+    this.style.setProperty("--size", `${this.size}px`);
+
     const icon = scannedRegistry[this.iconName];
 
     if (!icon) {
@@ -41,9 +45,7 @@ export class IconElement extends LitElement {
     }
 
     return html`
-      <div class="svg-container" style="width: ${this.size}px; height: ${this.size}px;">
         ${unsafeHTML(icon.source)}
-      </div>
     `;
   }
 }

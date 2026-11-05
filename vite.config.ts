@@ -21,7 +21,7 @@ function scannedIconsPlugin() {
     load(id: string) {
       if (id !== resolvedVirtualModuleId) return null;
 
-      const files = globSync('**/*.{ts,js,html}', {ignore: ["node_modules/**", "dist/**"]});
+      const files = globSync('**/*.{ts,js,html,md}', {ignore: ["node_modules/**", "dist/**"]});
       const foundIcons = new Set<string>();
 
       const regex = /iconName=["']([^"']+)["']/g;

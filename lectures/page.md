@@ -5,7 +5,7 @@ This page contains information on talks delivered in recent years of the IT Soci
 <details open>
 <summary>Talks delivered in 2026/27</summary>
 
-# General lectures
+# <x-icon iconName="presentation" size="35"></x-icon> General lectures
 
 PowerPoints and worksheets for more general lectures/talks can be found below:
 
@@ -22,7 +22,7 @@ A presentation delivered by Oscar on CPU vector instructions and some use cases 
 
 - [PowerPoint (PDF)](https://drive.google.com/file/d/16oLcma69_I9-_yjLKQ4ij_axmOpHerwI/view?usp=drive_link)
 
-# Crash Course in Coding
+# <x-icon iconName="braces" size="35"></x-icon> Crash Course in Coding
 
 Crash Course in Coding is a 10 week course delivered by Anna & Oscar designed to teach students the basics of Python and programming. Links will be added as and when each lesson is delivered.
 
@@ -30,7 +30,9 @@ Crash Course in Coding is a 10 week course delivered by Anna & Oscar designed to
 - [Week 2](https://docs.google.com/presentation/d/1YHLN_DJHy5VreioQ5ZZ7Wpi6UTBuZjZ_/edit?usp=drive_link&ouid=112791123721061705256&rtpof=true&sd=true) - Variables, data types, and basic maths
 - [Week 3](https://docs.google.com/presentation/d/1qr716GDmorQiDzcumzVkI93YOPwB-SSg/edit?usp=drive_link&ouid=112791123721061705256&rtpof=true&sd=true) - Boolean conditions & error spotting
 - Week 4 - Lists, sets, and dictionaries
-- Week 5 - Functions and loops
+- Week 5 - Functions & libraries
+- [Week 6](https://docs.google.com/presentation/d/1WmZz5hec8Kuw1W6BXCFdkPffXvNCHfQl/edit?usp=sharing&ouid=112791123721061705256&rtpof=true&sd=true) - Classes and Type hints. See example code for the final exercise [here](https://drive.google.com/file/d/1QS61fIXTfYDtXR3sTk0utzSgOkwbCBjW/view?usp=drive_link), think about how you could improve it, and what other functionality you could add.
+- Week 7 - External libraries and Pygame introduction
 
 Alternatively a folder with all the content is available [here](https://drive.google.com/drive/folders/1XN9qLUXHs11kd-XAZFfKrMQLs65TtUDA?usp=drive_link).
 
