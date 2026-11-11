@@ -167,6 +167,44 @@
       "date" : "2026-12-01",
       "location" : "Online",
       "description" : "Start of Advent of Code https://adventofcode.com/"
+    },
+    {
+      "title" : "Nerdvana",
+      "type" : "special",
+      "date" : "2026-11-28",
+      "endDate" : "2026-11-29",
+      "location" : "Neptune Building",
+      "description" : "The best event ever"
+    },
+    {
+      "title" : "Bad Movie Bingo",
+      "type" : "social",
+      "date" : "2026-11-12",
+      "location" : "Richmond LT3",
+      "description" : "Watch X-Men (the first one) & play bingo",
+      "time" : [[18, 0], [20, 0]]
+    },
+    {
+      "title" : "Deco Games Night",
+      "type" : "social",
+      "description" : "Games night at the Deco",
+      "date" : "2026-11-18",
+      "location" : "The Deco, Elm Grove, Southsea",
+      "time" : [[18, 30], [23, 59]]
+    },
+    {
+      "title" : "Hack Session",
+      "type" : "normal",
+      "description" : "Hack Session for Hack Pompey. Feel free to bring along any other work as well.",
+      "date" : "2026-11-26",
+      "location" : "FTC Floor 1",
+      "time" : [[17, 0], [19, 0]]
+    },
+    {
+      "title" : "IBM Visit",
+      "type" : "normal",
+      "description" : "IBM visit with the AI and Robotics societies.",
+      "date" : "2027-01-18"
     }
 
 ]  
